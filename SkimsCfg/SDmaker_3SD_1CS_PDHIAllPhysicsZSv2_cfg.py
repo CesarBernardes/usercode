@@ -16,7 +16,7 @@ process.maxEvents = cms.untracked.PSet(
 )
 
 process.options = cms.untracked.PSet(
-    #wantSummary = cms.untracked.bool(True)
+    wantSummary = cms.untracked.bool(True)
 )
 
 #process.Timing = cms.Service("Timing")
@@ -24,7 +24,10 @@ process.options = cms.untracked.PSet(
 # Input source
 process.source = cms.Source("PoolSource",
     fileNames = cms.untracked.vstring(
-    '/store/hidata/HIRun2010/HIAllPhysics/RECO/ZS-v2/0033/7E0F627F-5C43-E011-AF82-003048F1CA12.root'
+     'file:/d101/icali/ROOTFiles_SWsrc392pa5/00DFBAEF-5741-E011-B023-0025901D6486.root',
+     'file:/d101/icali/ROOTFiles_SWsrc392pa5/00151D16-8A41-E011-B938-003048CAAAB6.root',
+     'file:/d101/icali/ROOTFiles_SWsrc392pa5/0005A206-A642-E011-8B41-000423D33970.root'
+    #'/store/hidata/HIRun2010/HIAllPhysics/RECO/ZS-v2/0033/7E0F627F-5C43-E011-AF82-003048F1CA12.root'
     #'file:/d101/icali/ROOTFiles_SWsrc392pa5/3855C0DE-FCF4-DF11-857D-003048D2C092.root'
     #'/store/hidata/HIRun2010/HIAllPhysics/RAW/v1/000/151/878/FCB5F9D9-16F5-DF11-89B1-001D09F251FE.root'
 ))
@@ -131,7 +134,9 @@ process.filterSdJetHI = cms.Path(process.bscOrHfCoinc *
 
 ### PhotonHI SD
 process.hltPhotonHI = process.hltHighLevel.clone(HLTPaths = ['HLT_HIPhoton15'])
-process.filterSdPhotonHI = cms.Path(process.hltPhotonHI)
+process.filterSdPhotonHI = cms.Path(process.bscOrHfCoinc *
+                                    process.collisionEventSelection *
+                                    process.hltPhotonHI)
 
 #process.hltPhotonJetHI = process.hltHighLevel.clone(
 #  HLTPaths = ['HLT_HIJet35U','HLT_HIPhoton15'])
