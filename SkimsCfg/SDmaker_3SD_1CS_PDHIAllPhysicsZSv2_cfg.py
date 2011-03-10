@@ -11,6 +11,13 @@ process.load("Configuration.StandardSequences.MagneticField_38T_cff")
 process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_cff")
 process.load('Configuration.EventContent.EventContentHeavyIons_cff')
 
+
+process.configurationMetadata = cms.untracked.PSet(
+    version = cms.untracked.string('$Revision: 1.3 $'),
+    annotation = cms.untracked.string('SD and central skims'),
+    name = cms.untracked.string('$Source: /local/projects/CMSSW/rep/UserCode/icali/SkimsCfg/SDmaker_3SD_3CS_PDHIAllPhysicsZSv2_cfg.py,v $')
+)
+
 process.maxEvents = cms.untracked.PSet(
     input = cms.untracked.int32(-1)
 )
