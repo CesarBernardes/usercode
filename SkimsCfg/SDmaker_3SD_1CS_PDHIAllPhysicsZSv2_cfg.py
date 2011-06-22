@@ -13,13 +13,13 @@ process.load('Configuration.EventContent.EventContentHeavyIons_cff')
 
 
 process.configurationMetadata = cms.untracked.PSet(
-    version = cms.untracked.string('$Revision: 1.3 $'),
+    version = cms.untracked.string('$Revision: 1.4 $'),
     annotation = cms.untracked.string('SD and central skims'),
-    name = cms.untracked.string('$Source: /local/projects/CMSSW/rep/UserCode/icali/SkimsCfg/SDmaker_3SD_3CS_PDHIAllPhysicsZSv2_cfg.py,v $')
+    name = cms.untracked.string('$Source: /cvs/CMSSW/UserCode/icali/SkimsCfg/SDmaker_3SD_1CS_PDHIAllPhysicsZSv2_cfg.py,v $')
 )
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(-1)
+    input = cms.untracked.int32(1)
 )
 
 process.options = cms.untracked.PSet(
@@ -31,9 +31,10 @@ process.options = cms.untracked.PSet(
 # Input source
 process.source = cms.Source("PoolSource",
     fileNames = cms.untracked.vstring(
-     'file:/d101/icali/ROOTFiles_SWsrc392pa5/00DFBAEF-5741-E011-B023-0025901D6486.root',
-     'file:/d101/icali/ROOTFiles_SWsrc392pa5/00151D16-8A41-E011-B938-003048CAAAB6.root',
-     'file:/d101/icali/ROOTFiles_SWsrc392pa5/0005A206-A642-E011-8B41-000423D33970.root'
+     
+     'file:/d101/icali/ROOTFiles/00DFBAEF-5741-E011-B023-0025901D6486.root',
+     'file:/d101/icali/ROOTFiles/00151D16-8A41-E011-B938-003048CAAAB6.root',
+     'file:/d101/icali/ROOTFiles/0005A206-A642-E011-8B41-000423D33970.root'
     #'/store/hidata/HIRun2010/HIAllPhysics/RECO/ZS-v2/0033/7E0F627F-5C43-E011-AF82-003048F1CA12.root'
     #'file:/d101/icali/ROOTFiles_SWsrc392pa5/3855C0DE-FCF4-DF11-857D-003048D2C092.root'
     #'/store/hidata/HIRun2010/HIAllPhysics/RAW/v1/000/151/878/FCB5F9D9-16F5-DF11-89B1-001D09F251FE.root'
