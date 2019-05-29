@@ -195,6 +195,9 @@ private:
     float ephfmQ[3];
     float ephfpSumW;
     float ephfmSumW;
+    float eptkAngle[2];
+    float eptkQ[2];
+    float eptkSumW;
     
     //Composite candidate info
     float mva[MAXCAN];
@@ -550,16 +553,20 @@ VertexCompositeTreeProducer::fillRECO(const edm::Event& iEvent, const edm::Event
       edm::Handle<reco::EvtPlaneCollection> eventplanes;
       iEvent.getByToken(tok_eventplaneSrc_,eventplanes);
 
-      const reco::EvtPlane & ephfp1 = (*eventplanes)[0];
-      const reco::EvtPlane & ephfm1 = (*eventplanes)[1];
-      const reco::EvtPlane & ephfp2 = (*eventplanes)[6];
-      const reco::EvtPlane & ephfm2 = (*eventplanes)[7];
-      const reco::EvtPlane & ephfp3 = (*eventplanes)[13];
-      const reco::EvtPlane & ephfm3 = (*eventplanes)[14];
-     
+      const reco::EvtPlane & ephfp1 = (*eventplanes)[1];
+      const reco::EvtPlane & ephfm1 = (*eventplanes)[0];
+      const reco::EvtPlane & ephfp2 = (*eventplanes)[7];
+      const reco::EvtPlane & ephfm2 = (*eventplanes)[6];
+      const reco::EvtPlane & ephfp3 = (*eventplanes)[14];
+      const reco::EvtPlane & ephfm3 = (*eventplanes)[13];
+      const reco::EvtPlane & eptk2 = (*eventplanes)[9];
+      const reco::EvtPlane & eptk3 = (*eventplanes)[16];    
+ 
       ephfpAngle[0] = ephfp1.angle(2);
       ephfpAngle[1] = ephfp2.angle(2);
       ephfpAngle[2] = ephfp3.angle(2);
+      eptkAngle[0] = eptk2.angle(2);
+      eptkAngle[1] = eptk3.angle(2);
 
       ephfmAngle[0] = ephfm1.angle(2);
       ephfmAngle[1] = ephfm2.angle(2);
@@ -568,6 +575,8 @@ VertexCompositeTreeProducer::fillRECO(const edm::Event& iEvent, const edm::Event
       ephfpQ[0] = ephfp1.q(2);
       ephfpQ[1] = ephfp2.q(2);
       ephfpQ[2] = ephfp3.q(2);
+      eptkQ[0] = eptk2.q(2);
+      eptkQ[1] = eptk3.q(2);
 
       ephfmQ[0] = ephfm1.q(2);
       ephfmQ[1] = ephfm2.q(2);
@@ -575,6 +584,7 @@ VertexCompositeTreeProducer::fillRECO(const edm::Event& iEvent, const edm::Event
 
       ephfpSumW = ephfp2.sumw();
       ephfmSumW = ephfm2.sumw();
+      eptkSumW = eptk2.sumw();
     }
 
     //best vertex
@@ -1723,6 +1733,9 @@ VertexCompositeTreeProducer::initTree()
       VertexCompositeNtuple->Branch("ephfmQ",&ephfmQ,"ephfmQ[3]/F");
       VertexCompositeNtuple->Branch("ephfpSumW",&ephfpSumW,"ephfpSumW/F");
       VertexCompositeNtuple->Branch("ephfmSumW",&ephfmSumW,"ephfmSumW/F");
+      VertexCompositeNtuple->Branch("eptkAngle",&eptkAngle,"eptkAngle[2]/F");
+      VertexCompositeNtuple->Branch("eptkQ",&eptkQ,"eptkQ[2]/F");
+      VertexCompositeNtuple->Branch("eptkSumW",&eptkSumW,"eptkSumW/F");
     }
 
     // particle info
