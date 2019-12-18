@@ -91,7 +91,7 @@ from MuonAnalysis.TagAndProbe.heavyIon_variables_cff import *
 process.load("MuonAnalysis.TagAndProbe.heavyIon_modules_cff")
 ## Flags
 ### Track Id
-Track_Id = "track.isNonnull"
+Track_Id = "track.isNonnull && track.quality('highPurity') && (track.ptError/track.pt < 0.1) && (track.normalizedChi2/track.hitPattern.trackerLayersWithMeasurement<0.18) && (track.numberOfValidHits >= 11)"
 ### Muon Id
 HybridSoftIdReco_2018 = "isGlobalMuon && isTrackerMuon && innerTrack.hitPattern.trackerLayersWithMeasurement > 5 && innerTrack.hitPattern.pixelLayersWithMeasurement > 0"
 HybridSoftId_2018 = HybridSoftIdReco_2018 + " && abs(dB('PV2D')) < 0.3 && abs(dB('PVDZ')) < 20.0"
